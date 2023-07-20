@@ -18,7 +18,7 @@ public interface CountryMapper {
 	@Mapping(target = "region", qualifiedByName = "regionMapping")
 	Country fromDto(CountryDto countryDto);
 
-	@IterableMapping(elementTargetType  = Country.class)
+	@IterableMapping(elementTargetType = Country.class)
 	List<Country> fromDto(List<CountryDto> countryDtoList);
 
 	@Named("regionMapping")

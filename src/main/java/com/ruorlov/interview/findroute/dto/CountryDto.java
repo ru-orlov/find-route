@@ -1,7 +1,10 @@
 package com.ruorlov.interview.findroute.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CountryDto {
     private String cca3;
     private String region;

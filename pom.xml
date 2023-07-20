@@ -12,7 +12,9 @@
 	<artifactId>findroute</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>find-route</name>
-	<description>find-route</description>
+	<description>Calculate any possible land route from one country to another. The objective is to take a list of
+		country data in JSON format and calculate the route by utilizing individual countries border information.
+	</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
