@@ -1,8 +1,10 @@
 package com.ruorlov.interview.findroute.tools;
 
 import com.ruorlov.interview.findroute.entity.Country;
+import com.ruorlov.interview.findroute.exception.NoPathException;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class WalkAround {
 
@@ -29,20 +31,16 @@ public class WalkAround {
 
 		OUTER: while (!pivot.isEmpty()) {
 			currentCountry = pivot.remove();
-			//log.debug("Visiting " + currentCountry.getName());
 			if (currentCountry.equals(destination)) {
-				//log.debug("Origin and destination are equal");
 				break;
 			} else {
 				for (var neighbour : currentCountry.getBorders()) {
 					var neighbourCountry = countries.get(neighbour);
 					if(!visited.containsKey(neighbourCountry)){
-						//log.debug("... registering neighbour " + neighbourCountry.getName());
 						pivot.add(neighbourCountry);
 						visited.put(neighbourCountry, true);
 						previous.put(neighbourCountry, currentCountry);
 						if (neighbourCountry.equals(destination)) {
-							//log.debug("Shortest path found");
 							currentCountry = neighbourCountry;
 							break OUTER;
 						}
@@ -54,17 +52,15 @@ public class WalkAround {
 		}
 
 		if (!currentCountry.equals(destination)){
-			System.out.println("Cannot reach the path");
-			//throw new NoPathException("Cannot reach the path");
+			throw new NoPathException("Cannot reach the path");
 		}
 
 		List<Country> path = new ArrayList<>();
 		for (Country node = destination; node != null; node = previous.get(node)) {
 			path.add(node);
 		}
-		return null;
-//		return path.stream()
-//			.map(Country::getName)
-//			.collect(MyCollectors.reversing());
+		return path.stream()
+			.map(Country::getCca3)
+			.collect(Collectors.toList());
 	}
 }

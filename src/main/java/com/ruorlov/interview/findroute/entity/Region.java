@@ -4,14 +4,14 @@ import java.util.Set;
 
 public enum Region {
 
-	AFRICA,
-	AMERICAS,
-	ANTARCTIC,
-	ASIA,
-	EUROPE,
-	OCEANIA;
+	Africa,
+	Americas,
+	Antarctic,
+	Asia,
+	Europe,
+	Oceania;
 
-	private static final Set<Region> CONTINENTAL = Set.of(AFRICA, ASIA, EUROPE);
+	private static final Set<Region> CONTINENTAL = Set.of(Africa, Asia, Europe);
 
 	public boolean connectedWith(Region region) {
 		if (this == region) {

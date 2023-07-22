@@ -3,9 +3,7 @@ package com.ruorlov.interview.findroute.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ruorlov.interview.findroute.dto.CountryDto;
 import com.ruorlov.interview.findroute.entity.Country;
-import com.ruorlov.interview.findroute.mapper.CountryMapper;
 import jakarta.annotation.PostConstruct;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -13,7 +11,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -25,8 +22,8 @@ public class CountryServiceImpl implements CountryService {
     @PostConstruct
     @Cacheable("countries")
     public List<Country> getCountries() {
+        String countriesStr = downloadCountryFile();
         try {
-            String countriesStr = downloadCountryFile();
             return objectMapper.readValue(countriesStr, new TypeReference<List<Country>>(){});
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
@@ -39,7 +36,7 @@ public class CountryServiceImpl implements CountryService {
         RestTemplate restTemplate = new RestTemplate();
         byte[] byteContent = Objects.requireNonNull(restTemplate.getForObject(url, String.class)).getBytes();
         InputStream resourceInputStream = new ByteArrayInputStream(byteContent);
-        Scanner s = new Scanner(resourceInputStream).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
+        Scanner scanner = new Scanner(resourceInputStream).useDelimiter("\\A");
+        return scanner.hasNext() ? scanner.next() : "";
     }
 }
