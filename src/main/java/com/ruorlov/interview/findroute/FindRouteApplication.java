@@ -6,10 +6,10 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @EnableCaching
 @SpringBootApplication
-public class FindrouteApplication {
+public class FindRouteApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FindrouteApplication.class, args);
+		SpringApplication.run(FindRouteApplication.class, args);
 	}
 
 }
