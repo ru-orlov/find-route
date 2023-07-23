@@ -5,6 +5,7 @@ import com.ruorlov.interview.findroute.exception.NoPathException;
 import com.ruorlov.interview.findroute.tools.WalkAround;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -48,7 +49,8 @@ public class RoutingServiceImpl implements RoutingService {
 			}
 		}
 
-		var routes = new WalkAround(countries, originCountry, destinationCountry).paths();
+		var routes = new WalkAround(countries, originCountry, destinationCountry).paths()
+				.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
 
 		return routes;
 	}

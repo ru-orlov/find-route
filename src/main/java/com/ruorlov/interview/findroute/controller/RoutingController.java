@@ -20,8 +20,7 @@ public class RoutingController  {
 
     @GetMapping("/{origin}/{destination}")
     public List<String> getPath(@PathVariable String origin, @PathVariable String destination) {
-        List<String> countries = routingService.route(origin, destination);
-        return countries;
+        return routingService.route(origin, destination);
     }
 
 }
