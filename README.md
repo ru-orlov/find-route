@@ -7,6 +7,24 @@ and calculate the route by utilizing individual countries border information.
 - Maven
 - Spring Boot
 
+### How to run
+
+The only prerequisite is Java 11.
+
+- Build the application:
+    - Windows: `mvnw.cmd clean install`
+    - Unix: `mvnw clean install`
+
+- Run the application:
+    - Windows: `mvnw.cmd spring-boot:run`
+    - Unix: `mvnw spring-boot:run`
+
+- Try it out in Postman / Insomnia / Command line:
+   ```
+  curl --request GET \
+   --url http://localhost:8080/routing/CZE/ITA
+  ```
+
 **Specifications**
 - Spring Boot, Maven
 - Data link: https://raw.githubusercontent.com/mledoze/countries/master/countries.json
