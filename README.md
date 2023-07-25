@@ -9,8 +9,6 @@ and calculate the route by utilizing individual countries border information.
 
 ### How to run
 
-The only prerequisite is Java 11.
-
 - Build the application:
     - Windows: `mvnw.cmd clean install`
     - Unix: `mvnw clean install`
